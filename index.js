@@ -1,13 +1,20 @@
-function day() {
-    const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const date = new Date();
-    const Weekday = daysOfWeek[date.getUTCDay()];
-    const UTCTime = date.getTime();
+document.addEventListener("DOMContentLoaded", function() {
 
-    document.getElementById("Weekday").innerHTML = Weekday;
-    document.getElementById("UTCTime").innerHTML = UTCTime;
-}
+    const currentDayOfTheWeek = document.querySelector('[data-testid="currentDayOfTheWeek"]');
+    const currentUTCTime = document.querySelector('[data-testid="currentUTCTime"]');
+        
+    function updateUTC() {
+        const daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        const currentDate = new Date();
+        const dayOfWeek = daysOfWeek[currentDate.getUTCDay()];
+        currentDayOfTheWeek.textContent = dayOfWeek;        
+        const currentTime = new Time();
+        const utcTime = currentTime.getTime();
+        currentUTCTime.textContent = `Current UTC Time: ${utcTime} ms`;
+    
 
-day();
-
-setInterval(day, 1000);
+        setTimeout(updateUTC, 1000);
+    }
+    updateUTC();
+        
+});
